@@ -14,6 +14,7 @@ SET( AAL_SRC
 	${AAL_SOURCE_DIR}/src/NodeTree.cpp
 	${AAL_SOURCE_DIR}/src/main.cpp
 	${AAL_SOURCE_DIR}/src/FileReader.cpp
+	${AAL_SOURCE_DIR}/src/Node.cpp
 )
 
 add_executable( aal ${AAL_SRC} )

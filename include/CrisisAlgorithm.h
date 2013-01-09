@@ -94,6 +94,8 @@ private:
 	 */
 	NodeTree m_connectedCities;
 
+	Node **m_unconnectedCities;
+
 	/**
 	 * @brief Number of months (number of removed connections)
 	 * passed from begin of algorithm

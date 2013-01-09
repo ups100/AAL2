@@ -16,6 +16,10 @@ int main(void)
 
 	if(reader.isParsingSuccess()) {
 		cout<<"File parsing ok"<<endl;
+		cout << reader.getNumberOfCities()<<endl;
+		cout<<reader.getCapitol()<<endl;
+
+		cout.flush();
 		CrisisAlgorithm algorithm(reader.getNumberOfCities(), reader.getConnections(), reader.getCutPath(), reader.getCapitol());
 		algorithm.execute();
 		cout<<"Algorithm finished"<<endl;

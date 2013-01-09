@@ -12,19 +12,21 @@
 
 #include "CrisisAlgorithm.h"
 #include "InvalidArgumentsException.h"
+#include "Node.h"
+#include <stdlib.h>
 
 #include <list>
 #include <vector>
+#include <iostream>
 
-using std::vector;
-using std::pair;
-using std::list;
+using namespace std;
+
 
 namespace CrisisAlgorithmNamespace {
 
 CrisisAlgorithm::~CrisisAlgorithm()
 {
-
+	delete[] m_cities;
 }
 
 CrisisAlgorithm::CrisisAlgorithm(int numberOfCities, const vector<pair<int, int> > *connections,
@@ -34,7 +36,22 @@ CrisisAlgorithm::CrisisAlgorithm(int numberOfCities, const vector<pair<int, int>
 {
 	if(m_capitol > m_numberOfCities) throw InvalidArgumentsException("m_capitol > m_numberOfCities");
 
+	m_unconnectedCities = new Node[m_numberOfCities];
+	for(int i = 0; i < m_numberOfCities; ++i)
+	{
+		m_unconnectedCities[i] = 0L;
+	}
+	m_cities = new Node[m_numberOfCities];
+	for(int i = 0; i < m_numberOfCities; ++i)
+	{
+		m_cities[i].setId(i);
+		m_cities[i].setSize(m_numberOfCities);
+	}
 
+	for(int i = 0; i < connections->size(); ++i) {
+		m_cities[(*connections)[i].first].addUnusedConnection(&m_cities[(*connections)[i].second]);
+		m_cities[(*connections)[i].second].addUnusedConnection(&m_cities[(*connections)[i].first]);
+	}
 }
 
 const CrisisAlgorithmResult& CrisisAlgorithm::execute()
@@ -48,21 +65,49 @@ const CrisisAlgorithmResult& CrisisAlgorithm::execute()
 
 	for(int i = 0; i < notConnected.size(); ++i) {
 		m_result.addResult(notConnected[i], 0);
+		m_unconnectedCities[notConnected[i]] = m_cities[notConnected[i]];
 	}
+
 	for(vector<pair<int, int> >::const_iterator it = m_toCut->begin();
-			it != m_toCut->end(); ++it)
+			it != m_toCut->end(); ++it, ++m_months)
 	{
+		//////////////////////////
+		if( m_unconnectedCities[it->first] != 0L) {
+			if(m_unconnectedCities[it->first]->removeUnusedConnectionWith(it->second)) {
+				continue;
+			} else if(m_unconnectedCities[it->second] != 0) {
+				if(m_unconnectedCities[it->second]->removeUnusedConnectionWith(it->first)) {
+					continue;
+				} else {
+					throw InvalidArgumentsException("no such connection ");
+				}
+			}
+		}
+
+		if (m_unconnectedCities[it->second] != 0L) {
+			if (m_unconnectedCities[it->second]->removeUnusedConnectionWith(
+					it->first)) {
+				continue;
+			} else if (m_unconnectedCities[it->first] != 0) {
+				if (m_unconnectedCities[it->first]->removeUnusedConnectionWith(
+						it->second)) {
+					continue;
+				} else {
+					throw InvalidArgumentsException("no such connection ");
+				}
+			}
+			continue;
+		}
+		///////////////////////////////
 
 		notConnected = m_connectedCities.removeConnection(it->first, it->second);
 
 		for (int i = 0; i < notConnected.size(); ++i) {
 			m_result.addResult(notConnected[i], m_months);
+			m_unconnectedCities[notConnected[i]] = m_cities[notConnected[i]];
 		}
 		//check if capitol is offline
 		if( m_connectedCities.isRootOnly() ) break;
-		//go to next month
-		++m_months;
-
 	}
 
 	return m_result;

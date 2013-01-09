@@ -6,21 +6,34 @@
 namespace CrisisAlgorithmNamespace {
 
 class NodeTree;
+class NodePtr;
 
 class Node
 {
 	friend class NodeTree;
 public:
 
+	Node();
 
 	Node(int id, int size);
 
-	bool removeConnectionWith(int id);
+	~Node();
+
+	bool removeUnusedConnectionWith(int id);
+
+	void addUnusedConnection(Node *other);
 
 	inline int getId()
 	{
 		return m_id;
 	}
+
+	inline void setId(int id)
+	{
+		m_id = id;
+	}
+
+	void setSize(int size);
 
 private:
 	int m_id;

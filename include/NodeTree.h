@@ -30,6 +30,7 @@ public:
 	{
 		return m_treeSize == 1;
 	}
+
 private:
 	Node *m_root;
 	int m_treeSize;

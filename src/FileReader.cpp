@@ -6,14 +6,14 @@ namespace CrisisAlgorithmNamespace {
 
 FileReader::FileReader(ifstream& input)
 {
-	if (input.bad()) {
+	if (input.bad() || input.eof()) {
 		m_isFileOk = false;
 		return;
 	}
 
 	input >> m_numberOfCities;
 
-	if (input.bad()) {
+	if (input.bad() || input.eof()) {
 		m_isFileOk = false;
 		return;
 	}
@@ -22,7 +22,7 @@ FileReader::FileReader(ifstream& input)
 	for (int i = 0; i < m_numberOfCities * 2; ++i) {
 		input >> tmp1;
 		input >> tmp2;
-		if (input.bad()) {
+		if (input.bad() || input.eof()) {
 			m_isFileOk = false;
 			return;
 		} else {
@@ -32,6 +32,12 @@ FileReader::FileReader(ifstream& input)
 
 	for (int i = 0; i < m_numberOfCities * 2; ++i) {
 		input >> tmp1;
+		if(input.eof()){
+			m_capitol = tmp1;
+			m_isFileOk = true;
+			return;
+		}
+
 		input >> tmp2;
 		if (input.bad()) {
 			m_isFileOk = false;

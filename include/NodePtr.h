@@ -12,11 +12,18 @@ class NodePtr
 
 public:
 
-	NodePtr();
+	NodePtr()
+	:m_me(0L), m_isDouble(false)
+	{
+
+	}
 	NodePtr(const NodePtr&);
 	NodePtr& operator=(const NodePtr&);
 
-	~NodePtr();
+	~NodePtr()
+	{
+
+	}
 	//doesn't take the ownership
 	//if node == m_node m_isDouble == true
 	void setNode(Node *node)

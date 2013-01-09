@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <list>
+#include <iostream>
 
 using namespace std;
 namespace CrisisAlgorithmNamespace {
@@ -27,12 +28,10 @@ std::vector<int> NodeTree::makeTree(int root, Node *nodes, int size)
 	Node *node = 0L;
 	for(int flor = 0; !(lowestFlor[flor%2].empty()); ++flor) {
 		lowestFlor[(flor+1)%2].clear();
-
 		for(list<int>::iterator it = lowestFlor[flor%2].begin();
 				it != lowestFlor[flor%2].end(); ++it) {
 			for (int j = 0; j < size; ++j) {
-
-				if (m_root->m_children[j] == 0L) {
+				if ((m_root->m_children[j] == 0L)&&(j != m_root->m_id)){
 					node = nodes[*it].m_unused[j].removeOne();
 
 					if (node != 0) {
@@ -51,7 +50,6 @@ std::vector<int> NodeTree::makeTree(int root, Node *nodes, int size)
 			} //end of unused
 		}// end of this flor
 	}//no next flor
-
 	vector<int> unconnected;
 	for(int i = 0; i < size ; ++i) {
 		if(m_root->m_children[i] == 0L) {
@@ -61,6 +59,13 @@ std::vector<int> NodeTree::makeTree(int root, Node *nodes, int size)
 		}
 	}
 
+	cout<<m_root->m_id<<endl;
+	for(int i = 0; i < size; ++i)
+	{
+		if(m_root->m_directChildren[i] != 0L) {
+			cout<< m_root->m_directChildren[i]->m_id<<"  ";
+		}
+	}
 	return unconnected;
 }
 
