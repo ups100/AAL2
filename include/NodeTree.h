@@ -26,6 +26,17 @@ public:
 
 	std::vector<int> removeConnection(int first, int second);
 
+	/**
+	 * first dest ktore nie sa dziecmi roota
+	 * second source
+	 *
+	 */
+	std::list<std::pair<Node*, Node*> >* makeUnconnectedSet(Node *root);
+
+	void disconnectNodes(Node* root);
+
+	void reorganizeSubTree(Node *newRoot, Node *oldRoot);
+
 	inline bool isRootOnly()
 	{
 		return m_treeSize == 1;

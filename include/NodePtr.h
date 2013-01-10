@@ -45,9 +45,13 @@ public:
 	{
 		if(m_isDouble) {
 			m_isDouble = false;
-		}
+			return m_me;
 
-		return m_me;
+		} else {
+			Node *tmp = m_me;
+			m_me = 0L;
+			return tmp;
+		}
 	}
 
 	inline bool isDouble()
