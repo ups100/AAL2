@@ -1,6 +1,8 @@
 #include "Node.h"
 #include "NodePtr.h"
 #include "InvalidArgumentsException.h"
+#include <iostream>
+using namespace std;
 
 namespace CrisisAlgorithmNamespace {
 Node::Node()
@@ -20,7 +22,31 @@ void Node::addUnusedConnection(Node *other)
 {
 	if(m_unused != 0L) {
 		m_unused[other->m_id].setNode(other);
+		//if(m_unused[other->m_id].isDouble()) cout<<"Jest double dla "<<other->m_id<<endl;
 	} else throw InvalidArgumentsException("Node not initialized");
+}
+
+bool Node::removeUnusedConnectionWith(int id)
+{
+	if(id >= m_size) {
+		throw InvalidArgumentsException("Id out of bounds");
+	}
+
+	Node *node = m_unused[id].removeOne();
+
+	if(node == 0L) {
+		if( m_directChildren[id] != 0L ) {
+			m_directChildren[id] = 0L;
+			return true;
+		}
+		if(m_parent != 0L) {
+			if(m_parent->m_id == id) {
+				m_parent = 0L;
+				return true;
+			}
+		}
+	}
+	return (node != 0L);
 }
 
 void Node::setSize(int size)

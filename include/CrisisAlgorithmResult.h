@@ -34,6 +34,8 @@ public:
 	 */
 	CrisisAlgorithmResult(int numberOfCities);
 
+	CrisisAlgorithmResult(const CrisisAlgorithmResult& other);
+
 	/**
 	 * @brief Destructor
 	 */
@@ -44,7 +46,7 @@ public:
 	 *
 	 * @param time number of ms to be added
 	 */
-	void addExecutionTime(time_t time);
+	void addExecutionTime(clock_t time);
 
 	/**
 	 * @brief Sets the moth in which city has lost connection
@@ -60,7 +62,7 @@ public:
 	 *
 	 * @return time of algorithm execution in ms
 	 */
-	time_t getExecutionTime() const;
+	clock_t getExecutionTime() const;
 
 	/**
 	 * @brief Gets the number of cities in algorithm
@@ -76,16 +78,17 @@ public:
 	 *
 	 * @return number of months being connected
 	 *
-	 * @warning index 0 should be unused
 	 */
 	int operator[](int index) const;
+
+	CrisisAlgorithmResult& operator=(const CrisisAlgorithmResult& other);
 
 private:
 
 	/**
 	 * @brief Current time of algorithm execution.
 	 */
-	time_t m_executionTime;
+	clock_t m_executionTime;
 
 	/**
 	 * @brief number if cities in algorithm

@@ -4,11 +4,11 @@
 namespace CrisisAlgorithmNamespace {
 
 class Node;
-class NodePtrTable;
+class NodeTree;
 
 class NodePtr
 {
-	friend class NodePtrTable;
+	friend class NodeTree;
 
 public:
 

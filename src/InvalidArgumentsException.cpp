@@ -20,6 +20,7 @@ InvalidArgumentsException::~InvalidArgumentsException() throw()
 }
 
 InvalidArgumentsException::InvalidArgumentsException(std::string what) throw()
+		:m_what(what)
 {
 
 }
@@ -27,7 +28,7 @@ InvalidArgumentsException::InvalidArgumentsException(std::string what) throw()
 
 const char* InvalidArgumentsException::what() const throw()
 {
-	return  0L;
+	return  m_what.c_str();
 }
 
 }//namespace

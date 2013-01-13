@@ -2,6 +2,7 @@
 #define __CRISIS_ALGORITHM_NODETREE_H__
 
 #include <vector>
+#include <list>
 
 namespace CrisisAlgorithmNamespace {
 
@@ -32,8 +33,6 @@ public:
 	 *
 	 */
 	std::list<std::pair<Node*, Node*> >* makeUnconnectedSet(Node *root);
-
-	void disconnectNodes(Node* root);
 
 	void reorganizeSubTree(Node *newRoot, Node *oldRoot);
 

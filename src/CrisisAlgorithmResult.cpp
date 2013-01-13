@@ -30,8 +30,18 @@ CrisisAlgorithmResult::CrisisAlgorithmResult(int numberOfCities)
 	}
 }
 
+CrisisAlgorithmResult::CrisisAlgorithmResult(const CrisisAlgorithmResult& other)
+:m_executionTime(other.m_executionTime), m_numberOfCities(other.m_numberOfCities)
+{
+	m_results = new int[m_numberOfCities];
 
-void CrisisAlgorithmResult::addExecutionTime(time_t time)
+	for(int i=0; i < m_numberOfCities; ++i )
+	{
+		m_results[i] = other.m_results[i];
+	}
+}
+
+void CrisisAlgorithmResult::addExecutionTime(clock_t time)
 {
 	m_executionTime += time;
 }
@@ -43,7 +53,7 @@ void CrisisAlgorithmResult::addResult(int city, int month)
 }
 
 
-time_t CrisisAlgorithmResult::getExecutionTime() const
+clock_t CrisisAlgorithmResult::getExecutionTime() const
 {
 	return  m_executionTime;
 }
@@ -55,7 +65,25 @@ int CrisisAlgorithmResult::getNumberOfCities() const
 
 int CrisisAlgorithmResult::operator[](int index) const
 {
-	return m_results[index-1];
+	return m_results[index];
+}
+
+CrisisAlgorithmResult& CrisisAlgorithmResult::operator=(const CrisisAlgorithmResult& other)
+{
+	if(this == &other) return *this;
+
+	delete[] m_results;
+
+	m_executionTime = other.m_executionTime;
+	m_numberOfCities = other.m_numberOfCities;
+
+	m_results = new int[m_numberOfCities];
+
+	for (int i = 0; i < m_numberOfCities; ++i) {
+		m_results[i] = other.m_results[i];
+	}
+
+	return *this;
 }
 
 }//namespace
