@@ -117,7 +117,7 @@ int main(int argc, char** argv )
 	}
 
 	cout<<"--------------------Algorithm finished--------------------"<<endl;
-	for (int i = 0; i < result.getNumberOfCities(); ++i) {
+	/*for (int i = 0; i < result.getNumberOfCities(); ++i) {
 		if(result[i] == -1) {
 			cout<< "City number: " << i <<" was the capitol."<<endl;
 		} else {
@@ -125,7 +125,7 @@ int main(int argc, char** argv )
 							<< result[i] << " months." << endl;
 		}
 
-	}
+	}*/
 	cout <<endl<< "Execution time = " << (result.getExecutionTime() * 1000.0)/CLOCKS_PER_SEC << " ms"
 			<<" ( "<<(result.getExecutionTime() * 1.0)/CLOCKS_PER_SEC<< " s )"<< endl;
 

@@ -124,7 +124,7 @@ std::vector<int> NodeTree::removeConnection(int first, int second)
 		}
 
 		//cout<<"przed make"<<endl; cout.flush();
-		boost::shared_ptr<list<pair<Node*,Node*> > > unconnectedSet = makeUnconnectedSet(one);
+		boost::shared_ptr<list<pair<Node*,Node*> > > unconnectedSet = boost::shared_ptr<list<pair<Node*,Node*> > >(makeUnconnectedSet(one));
 
 		//If there is no unused connectio from one and all of its children
 		if(unconnectedSet->empty()) {
