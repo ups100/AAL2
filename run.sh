@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cities=200
+cities=2000
 max=12800
 
 while [ $cities -le $max ]
