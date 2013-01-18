@@ -1,7 +1,7 @@
 /**
- * @file CrisisAlgorithm.h
+ * @file CrisisAlgorithmResult.h
  *
- * @brief Implementation of the Class CrisisAlgorithmResult
+ * @brief Implementation of the Class CrisisAlgorithmNamespace::CrisisAlgorithmResult
  *
  * @details Implementation of project "AAL-9-LS KRYZYS"
  *
@@ -27,81 +27,86 @@ class CrisisAlgorithmResult
 
 public:
 
-	/**
-	 * @brief Creates Result of algorithm execution for specified number of cities
-	 *
-	 * @param numberOfCities number of cities in algorithm
-	 */
-	CrisisAlgorithmResult(int numberOfCities);
+    /**
+     * @brief Creates Result of algorithm execution for specified number of cities
+     *
+     * @param numberOfCities number of cities in algorithm
+     */
+    CrisisAlgorithmResult(int numberOfCities);
 
-	CrisisAlgorithmResult(const CrisisAlgorithmResult& other);
+    CrisisAlgorithmResult(const CrisisAlgorithmResult& other);
 
-	/**
-	 * @brief Destructor
-	 */
-	virtual ~CrisisAlgorithmResult();
+    /**
+     * @brief Destructor
+     */
+    virtual ~CrisisAlgorithmResult();
 
-	/**
-	 * @brief Adds passed number of ms to time of algorithm execution
-	 *
-	 * @param time number of ms to be added
-	 */
-	void addExecutionTime(clock_t time);
+    /**
+     * @brief Adds passed number of ms to time of algorithm execution
+     *
+     * @param time number of ms to be added
+     */
+    void addExecutionTime(clock_t time);
 
-	/**
-	 * @brief Sets the moth in which city has lost connection
-	 *
-	 * @param city index of the city
-	 *
-	 * @param month number of month
-	 */
-	void addResult(int city, int month);
+    /**
+     * @brief Sets the moth in which city has lost connection
+     *
+     * @param city index of the city
+     *
+     * @param month number of month
+     */
+    void addResult(int city, int month);
 
-	/**
-	 * @brief Gets the algorithm's execution time
-	 *
-	 * @return time of algorithm execution in ms
-	 */
-	clock_t getExecutionTime() const;
+    /**
+     * @brief Gets the algorithm's execution time
+     *
+     * @return time of algorithm execution in ms
+     */
+    clock_t getExecutionTime() const;
 
-	/**
-	 * @brief Gets the number of cities in algorithm
-	 *
-	 * @return number of cities
-	 */
-	int getNumberOfCities() const;
+    /**
+     * @brief Gets the number of cities in algorithm
+     *
+     * @return number of cities
+     */
+    int getNumberOfCities() const;
 
-	/**
-	 * @brief Allows to access the results of algorithm execution
-	 *
-	 * @param index of city
-	 *
-	 * @return number of months being connected
-	 *
-	 */
-	int operator[](int index) const;
+    /**
+     * @brief Allows to access the results of algorithm execution
+     *
+     * @param index of city
+     *
+     * @return number of months being connected
+     *
+     */
+    int operator[](int index) const;
 
-	CrisisAlgorithmResult& operator=(const CrisisAlgorithmResult& other);
+    /**
+     * @brief Asignment operator
+     *
+     * @param other object to be assigned
+     */
+    CrisisAlgorithmResult& operator=(const CrisisAlgorithmResult& other);
 
 private:
 
-	/**
-	 * @brief Current time of algorithm execution.
-	 */
-	clock_t m_executionTime;
+    /**
+     * @brief Current time of algorithm execution.
+     */
+    clock_t m_executionTime;
 
-	/**
-	 * @brief number if cities in algorithm
-	 */
-	int m_numberOfCities;
+    /**
+     * @brief number if cities in algorithm
+     */
+    int m_numberOfCities;
 
-	/**
-	 * @brief array with results of algorithm
-	 */
-	int * m_results;
+    /**
+     * @brief array with results of algorithm
+     */
+    int * m_results;
 
 };
 
-}//namespace
+} //namespace
 
 #endif // !defined(EA_B7213FB1_3058_4712_82D3_F65FA77D5D61__INCLUDED_)

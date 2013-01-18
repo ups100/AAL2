@@ -1,7 +1,7 @@
 /**
  * @file InvalidArgumentsException.cpp
  *
- * @brief Implementation of the Class InvalidArgumentsException
+ * @brief Implementation of the Class CrisisAlgorithmNamespace::InvalidArgumentsException
  *
  * @details Implementation of project "AAL-9-LS KRYZYS"
  *
@@ -14,21 +14,20 @@
 
 namespace CrisisAlgorithmNamespace {
 
-InvalidArgumentsException::~InvalidArgumentsException() throw()
+InvalidArgumentsException::~InvalidArgumentsException() throw ()
 {
 
 }
 
-InvalidArgumentsException::InvalidArgumentsException(std::string what) throw()
-		:m_what(what)
+InvalidArgumentsException::InvalidArgumentsException(std::string what) throw ()
+        : m_what(what)
 {
 
 }
 
-
-const char* InvalidArgumentsException::what() const throw()
+const char* InvalidArgumentsException::what() const throw ()
 {
-	return  m_what.c_str();
+    return m_what.c_str();
 }
 
-}//namespace
+} //namespace

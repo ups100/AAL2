@@ -1,0 +1,52 @@
+/////////////////////////////////////////
+// 	Opasiak Krzysztof
+//	236706
+////////////////////////////////////////
+
+
+Treść zadania:
+
+AAL-9-LS KRYZYS
+Miasta są połączone ze sobą siecią światłowodów. Linie są utrzymywane przez miasta i każde miasto
+ma środki do utrzymania tylko dwóch światłowodów (połączeo z dwoma różnymi miastami). Istnieje
+możliwośd, że para miast jest połączona dwoma światłowodami (każde miasto z pary utrzymuje po
+jednym światłowodzie). W wyniku kryzysu co miesiąc jedno miasto traci środki do utrzymania
+jednego światłowodu. Dla każdego miasta należy podad liczbę miesięcy, po których straci ono kontakt
+ze stolicą. Dana jest struktura sieci, ciąg odcinanych w kolejnych miesiącach światłowodów oraz
+wybrane miasto stolica.
+
+////////////////////////////////////////
+
+Sposób uruchamiania:
+Najpierw nalezy wykonac skrypt setup.sh z głównego katalogu projektu, po czym przechodzimy do katalogu build i wydajemy polecenie make. Program znajduje się w katalog bin i z niego należy go uruchamiać.
+
+./aal <rozmiar przypadku testowego> 
+
+zaleca się aby minimalny przypadek testowy miał rozmiar powyżej 3000 aby pomiary czasu były niezerowe
+
+./aal <nazwa pliku wejściowego>
+
+plik powinien być sformatowany w następujący sposób:
+
+rozmiar problemu
+
+połączenia
+
+połączenia do usunięcia w odpowiedniej kolejnosci
+
+stolica
+
+Niezaleznie od wybranego źródła danych program posiada następujace opcje:
+
+-c po wykonaniu całego algorytmu uruchamiany jest algorytm zaimplementowany z użyciem biblioteki Boost Graph, po czym wyniki działania obu algorytmów są porównywane
+
+-s po wykonaniu algorytmu rozmiar problemu oraz czas wykonania zostanie dołączony do pliku AlgorithmResults/results 
+
+////////////////////////////////////////
+
+Prezentacja wykresu:
+Na podstawie zgromadzonych danych (uwaga, dane powinny byc posortowane niemalejąco) można narysować wykres. w tym cel nalezy wydać z głównego katalogu polecenie:
+
+java -jar statistic.jar AlgorithmResults/results
+
+////////////////////////////////////////
